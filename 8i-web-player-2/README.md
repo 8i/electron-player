@@ -110,9 +110,70 @@ $ pnpm start_clearkey_server
 
 ## Building for production
 
-```
+```bash
 $ pnpm build_player
 ```
+
+## Electron App
+
+The player can be packaged as a standalone Electron desktop application.
+
+### Prerequisites
+
+1. Build the web player first:
+```bash
+$ pnpm build_player
+```
+
+2. Install Electron dependencies:
+```bash
+$ cd electron
+$ npm install
+```
+
+### Running in development mode
+
+```bash
+$ cd electron
+$ npm start
+```
+
+This launches the Electron app which will:
+- Auto-load content from `../local-content/` if present
+- Enable GPU acceleration with Metal (macOS) or ANGLE
+- Serve the player via local HTTP servers (ports 1234 and 8888)
+
+Use **File > Open Content Folder** to load different volumetric content.
+
+### Building the standalone app
+
+Build for macOS (Apple Silicon):
+```bash
+$ cd electron
+$ npm run build
+```
+
+Build universal binary (Intel + Apple Silicon):
+```bash
+$ cd electron
+$ npm run build:universal
+```
+
+The built application will be output to `electron/release/`.
+
+### Bundling content
+
+To bundle volumetric content with the app, place your content folders (containing `manifest.mpd` files) in `local-content/` before building. The build process will automatically include them in the app bundle.
+
+### GPU Acceleration
+
+The Electron app enables hardware-accelerated WebGL rendering with the following flags:
+- `--enable-gpu-rasterization`
+- `--ignore-gpu-blocklist`
+- `--use-gl=angle`
+- `--use-angle=metal` (macOS)
+
+To verify GPU acceleration is working, open **View > Toggle Developer Tools** and check the console for WebGL renderer info.
 
 ## Resources
 
