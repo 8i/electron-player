@@ -1,0 +1,42 @@
+# Dependencies
+8i-web-player-2/node_modules/
+
+# Build outputs
+8i-web-player-2/dist/
+8i-web-player-2/.parcel-cache/
+8i-web-player-2/.vite/
+
+# Electron release builds (12GB)
+8i-web-player-2/electron/release/
+
+# Existing git history in subdirectory
+8i-web-player-2/.git/
+
+# Large bundled content (10+ GB) - too large for GitHub
+local-content/
+finallyworking1201_S01_T01_v01_local/
+
+# System files
+.DS_Store
+.claude/
+
+# IDE and editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Internal TODO/notes files
+8i-web-player-2/TODO*.md
+
+# Logs
+*.log
+/tmp/mesh-editor-logs/
+
+# OS generated
+Thumbs.db
+ehthumbs.db
+
+# Optional: pnpm lockfile (project uses npm)
+8i-web-player-2/pnpm-lock.yaml

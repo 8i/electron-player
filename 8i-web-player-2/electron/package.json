@@ -1,0 +1,78 @@
+{
+  "name": "volumetric-mesh-viewer",
+  "version": "1.0.0",
+  "description": "Volumetric Mesh Viewer - View and edit volumetric video content",
+  "main": "main.js",
+  "author": "8i",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --mac --arm64",
+    "build:universal": "electron-builder --mac --universal"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.8i.volumetric-mesh-viewer",
+    "productName": "Volumetric Mesh Viewer",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "server.js",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../dist",
+        "to": "app/dist",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "../public/draco",
+        "to": "app/dist/draco",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "../../local-content",
+        "to": "content",
+        "filter": ["**/*"]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.graphics-design",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["arm64"]
+        }
+      ],
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "darkModeSupport": true,
+      "identity": null
+    },
+    "dmg": {
+      "title": "${productName} ${version}",
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
+  }
+}
